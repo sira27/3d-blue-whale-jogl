@@ -456,6 +456,15 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(0.43f, 0.04f, -0.0f);
         gl.glVertex3f(0.42f, 0.04f, -0.02f);
         
+        // Kerangka Sirip
+        
+        
+        // Kerangka Buntut
+        
+        
+        // Fill
+        
+        
         gl.glEnd();
 
         // Disables this texture's target (e.g., GL_TEXTURE_2D) in the current GL
