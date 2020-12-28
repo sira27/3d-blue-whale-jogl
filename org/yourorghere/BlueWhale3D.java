@@ -39,8 +39,8 @@ import javax.swing.SwingUtilities;
 public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListener {
     // Define constants for the top-level constainer
     private static String TITLE = "3D Blue Whale";
-    private static final int CANVAS_WIDTH = 1280; // width of the drawable
-    private static final int CANVAS_HEIGHT = 720; // height of the drawable
+    private static final int CANVAS_WIDTH = 800; // width of the drawable
+    private static final int CANVAS_HEIGHT = 450; // height of the drawable
     private static final int FPS = 60; // animator's target frame per second
     
     // setup OpenGL Graphics Renderer
@@ -151,7 +151,9 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         
         gl.glBegin(GL.GL_QUADS);
         gl.glColor3f(0.0f, 0.5f, 1.0f); // RGB
-        
+
+/*##############################################################################
+##############################################################################*/        
         // Kerangka Paus - Samping
         gl.glVertex3f(-0.49f, -0.05f, -0.0f);
         gl.glVertex3f(-0.49f, -0.05f, 0.0f);
@@ -263,22 +265,6 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(-0.19f, 0.08f, 0.01f);
         gl.glVertex3f(-0.19f, 0.08f, -0.01f);
         
-        // Sirip atas
-        gl.glVertex3f(-0.19f, 0.08f, -0.01f);
-        gl.glVertex3f(-0.19f, 0.08f, 0.01f);
-        gl.glVertex3f(-0.23f, 0.095f, 0.005f);
-        gl.glVertex3f(-0.23f, 0.095f, -0.005f);
-        
-        gl.glVertex3f(-0.23f, 0.095f, -0.005f);
-        gl.glVertex3f(-0.23f, 0.095f, 0.005f);
-        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
-        gl.glVertex3f(-0.25f, 0.095f, -0.0f);
-        
-        gl.glVertex3f(-0.25f, 0.095f, -0.0f);
-        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
-        gl.glVertex3f(-0.23f, 0.07f, 0.01f);
-        gl.glVertex3f(-0.23f, 0.07f, -0.01f);
-        
         gl.glVertex3f(-0.23f, 0.07f, -0.01f);
         gl.glVertex3f(-0.23f, 0.07f, 0.01f);
         gl.glVertex3f(-0.3f, 0.06f, 0.01f);
@@ -304,6 +290,37 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(-0.49f, -0.05f, 0.0f);
         gl.glVertex3f(-0.49f, -0.05f, -0.0f);
         
+/*##############################################################################
+##############################################################################*/        
+        // Sirip atas
+        gl.glVertex3f(-0.19f, 0.08f, -0.01f);
+        gl.glVertex3f(-0.19f, 0.08f, 0.01f);
+        gl.glVertex3f(-0.23f, 0.095f, 0.005f);
+        gl.glVertex3f(-0.23f, 0.095f, -0.005f);
+        
+        gl.glVertex3f(-0.23f, 0.095f, -0.005f);
+        gl.glVertex3f(-0.23f, 0.095f, 0.005f);
+        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
+        gl.glVertex3f(-0.25f, 0.095f, -0.0f);
+        
+        gl.glVertex3f(-0.25f, 0.095f, -0.0f);
+        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
+        gl.glVertex3f(-0.23f, 0.07f, 0.01f);
+        gl.glVertex3f(-0.23f, 0.07f, -0.01f);
+        
+        // Fill Sirip Atas
+//        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
+//        gl.glVertex3f(-0.23f, 0.095f, 0.005f);
+//        gl.glVertex3f(-0.19f, 0.08f, 0.01f);
+//        gl.glVertex3f(-0.23f, 0.07f, 0.01f);
+//        
+//        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
+//        gl.glVertex3f(-0.23f, 0.095f, -0.005f);
+//        gl.glVertex3f(-0.19f, 0.08f, -0.01f);
+//        gl.glVertex3f(-0.23f, 0.07f, -0.01f);
+
+/*##############################################################################
+##############################################################################*/        
         // Kerangka paus - atas kanan
         gl.glVertex3f(-0.41f, -0.01f, 0.02f);
         gl.glVertex3f(-0.49f, -0.05f, 0.0f);
@@ -379,7 +396,9 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(0.43f, 0.02f, 0.0f);
         gl.glVertex3f(0.43f, 0.04f, 0.0f);
         gl.glVertex3f(0.42f, 0.04f, 0.02f);
-        
+
+/*##############################################################################
+##############################################################################*/        
         // Kerangka paus - atas kiri
         gl.glVertex3f(-0.41f, -0.01f, -0.02f);
         gl.glVertex3f(-0.49f, -0.05f, -0.0f);
@@ -455,92 +474,201 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(0.43f, 0.02f, -0.0f);
         gl.glVertex3f(0.43f, 0.04f, -0.0f);
         gl.glVertex3f(0.42f, 0.04f, -0.02f);
+
+/*##############################################################################
+##############################################################################*/        
+        // Kerangka Sirip Kanan
+        gl.glVertex3f(0.2f, 0.0f, 0.06f);
+        gl.glVertex3f(0.2f, 0.0f, 0.08f);
+        gl.glVertex3f(0.16f, 0.0f, 0.08f);
+        gl.glVertex3f(0.16f, 0.0f, 0.06f);
         
-        // Kerangka Sirip
+        gl.glVertex3f(0.16f, 0.0f, 0.06f);
+        gl.glVertex3f(0.16f, 0.0f, 0.08f);
+        gl.glVertex3f(0.13f, -0.01f, 0.09f);
+        gl.glVertex3f(0.13f, -0.01f, 0.07f);
         
+        gl.glVertex3f(0.13f, -0.01f, 0.07f);
+        gl.glVertex3f(0.13f, -0.01f, 0.09f);
+        gl.glVertex3f(0.1f, -0.04f, 0.12f);
+        gl.glVertex3f(0.1f, -0.04f, 0.105f);
         
+        gl.glVertex3f(0.1f, -0.04f, 0.105f);
+        gl.glVertex3f(0.1f, -0.04f, 0.12f);
+        gl.glVertex3f(0.08f, -0.06f, 0.14f);
+        gl.glVertex3f(0.08f, -0.06f, 0.13f);
+        
+        gl.glVertex3f(0.08f, -0.06f, 0.13f);
+        gl.glVertex3f(0.08f, -0.06f, 0.14f);
+        gl.glVertex3f(0.05f, -0.08f, 0.15f);
+        gl.glVertex3f(0.05f, -0.08f, 0.15f);
+        
+        gl.glVertex3f(0.05f, -0.08f, 0.15f);
+        gl.glVertex3f(0.05f, -0.08f, 0.15f);
+        gl.glVertex3f(0.09f, -0.08f, 0.15f);
+        gl.glVertex3f(0.09f, -0.08f, 0.16f);
+        
+        gl.glVertex3f(0.09f, -0.08f, 0.15f);
+        gl.glVertex3f(0.09f, -0.08f, 0.16f);
+        gl.glVertex3f(0.12f, -0.07f, 0.15f);
+        gl.glVertex3f(0.12f, -0.07f, 0.135f);
+        
+        gl.glVertex3f(0.12f, -0.07f, 0.135f);
+        gl.glVertex3f(0.12f, -0.07f, 0.15f);
+        gl.glVertex3f(0.15f, -0.05f, 0.13f);
+        gl.glVertex3f(0.15f, -0.05f, 0.11f);
+        
+        gl.glVertex3f(0.15f, -0.05f, 0.11f);
+        gl.glVertex3f(0.15f, -0.05f, 0.13f);
+        gl.glVertex3f(0.18f, -0.02f, 0.1f);
+        gl.glVertex3f(0.18f, -0.02f, 0.08f);
+        
+        gl.glVertex3f(0.18f, -0.02f, 0.08f);
+        gl.glVertex3f(0.18f, -0.02f, 0.1f);
+        gl.glVertex3f(0.2f, 0.0f, 0.08f);
+        gl.glVertex3f(0.2f, 0.0f, 0.06f);
+
+/*##############################################################################
+##############################################################################*/        
+        // Kerangka Sirip Kiri
+        gl.glVertex3f(0.2f, 0.0f, -0.06f);
+        gl.glVertex3f(0.2f, 0.0f, -0.08f);
+        gl.glVertex3f(0.16f, 0.0f, -0.08f);
+        gl.glVertex3f(0.16f, 0.0f, -0.06f);
+        
+        gl.glVertex3f(0.16f, 0.0f, -0.06f);
+        gl.glVertex3f(0.16f, 0.0f, -0.08f);
+        gl.glVertex3f(0.13f, -0.01f, -0.09f);
+        gl.glVertex3f(0.13f, -0.01f, -0.07f);
+        
+        gl.glVertex3f(0.13f, -0.01f, -0.07f);
+        gl.glVertex3f(0.13f, -0.01f, -0.09f);
+        gl.glVertex3f(0.1f, -0.04f, -0.12f);
+        gl.glVertex3f(0.1f, -0.04f, -0.105f);
+        
+        gl.glVertex3f(0.1f, -0.04f, -0.105f);
+        gl.glVertex3f(0.1f, -0.04f, -0.12f);
+        gl.glVertex3f(0.08f, -0.06f, -0.14f);
+        gl.glVertex3f(0.08f, -0.06f, -0.13f);
+        
+        gl.glVertex3f(0.08f, -0.06f, -0.13f);
+        gl.glVertex3f(0.08f, -0.06f, -0.14f);
+        gl.glVertex3f(0.05f, -0.08f, -0.15f);
+        gl.glVertex3f(0.05f, -0.08f, -0.15f);
+        
+        gl.glVertex3f(0.05f, -0.08f, -0.15f);
+        gl.glVertex3f(0.05f, -0.08f, -0.15f);
+        gl.glVertex3f(0.09f, -0.08f, -0.15f);
+        gl.glVertex3f(0.09f, -0.08f, -0.16f);
+        
+        gl.glVertex3f(0.09f, -0.08f, -0.15f);
+        gl.glVertex3f(0.09f, -0.08f, -0.16f);
+        gl.glVertex3f(0.12f, -0.07f, -0.15f);
+        gl.glVertex3f(0.12f, -0.07f, -0.135f);
+        
+        gl.glVertex3f(0.12f, -0.07f, -0.135f);
+        gl.glVertex3f(0.12f, -0.07f, -0.15f);
+        gl.glVertex3f(0.15f, -0.05f, -0.13f);
+        gl.glVertex3f(0.15f, -0.05f, -0.11f);
+        
+        gl.glVertex3f(0.15f, -0.05f, -0.11f);
+        gl.glVertex3f(0.15f, -0.05f, -0.13f);
+        gl.glVertex3f(0.18f, -0.02f, -0.1f);
+        gl.glVertex3f(0.18f, -0.02f, -0.08f);
+        
+        gl.glVertex3f(0.18f, -0.02f, -0.08f);
+        gl.glVertex3f(0.18f, -0.02f, -0.1f);
+        gl.glVertex3f(0.2f, 0.0f, -0.08f);
+        gl.glVertex3f(0.2f, 0.0f, -0.06f);
+        
+/*##############################################################################
+##############################################################################*/        
         // Kerangka Buntut Kiri
         gl.glVertex3f(-0.4f, 0.0f, 0.0f);
         gl.glVertex3f(-0.4f, -0.02f, 0.0f);
-        gl.glVertex3f(-0.42f, -0.03f, -0.05f);
-        gl.glVertex3f(-0.42f, -0.01f, -0.05f);
+        gl.glVertex3f(-0.42f, -0.03f, -0.03f);
+        gl.glVertex3f(-0.42f, -0.01f, -0.03f);
         
-        gl.glVertex3f(-0.42f, -0.01f, -0.05f);
-        gl.glVertex3f(-0.42f, -0.03f, -0.05f);
-        gl.glVertex3f(-0.45f, -0.04f, -0.1f);
-        gl.glVertex3f(-0.45f, -0.025f, -0.1f);
+        gl.glVertex3f(-0.42f, -0.01f, -0.03f);
+        gl.glVertex3f(-0.42f, -0.03f, -0.03f);
+        gl.glVertex3f(-0.45f, -0.04f, -0.08f);
+        gl.glVertex3f(-0.45f, -0.025f, -0.08f);
         
-        gl.glVertex3f(-0.45f, -0.025f, -0.1f);
-        gl.glVertex3f(-0.45f, -0.04f, -0.1f);
-        gl.glVertex3f(-0.47f, -0.05f, -0.13f);
-        gl.glVertex3f(-0.47f, -0.04f, -0.13f);
+        gl.glVertex3f(-0.45f, -0.025f, -0.08f);
+        gl.glVertex3f(-0.45f, -0.04f, -0.08f);
+        gl.glVertex3f(-0.47f, -0.05f, -0.1f);
+        gl.glVertex3f(-0.47f, -0.04f, -0.1f);
         
-        gl.glVertex3f(-0.47f, -0.04f, -0.13f);
-        gl.glVertex3f(-0.47f, -0.05f, -0.13f);
-        gl.glVertex3f(-0.49f, -0.06f, -0.15f);
-        gl.glVertex3f(-0.49f, -0.055f, -0.15f);
+        gl.glVertex3f(-0.47f, -0.04f, -0.1f);
+        gl.glVertex3f(-0.47f, -0.05f, -0.1f);
+        gl.glVertex3f(-0.49f, -0.06f, -0.12f);
+        gl.glVertex3f(-0.49f, -0.055f, -0.12f);
         
-        gl.glVertex3f(-0.49f, -0.055f, -0.15f);
-        gl.glVertex3f(-0.49f, -0.06f, -0.15f);
-        gl.glVertex3f(-0.51f, -0.08f, -0.15f);
-        gl.glVertex3f(-0.51f, -0.08f, -0.15f);
+        gl.glVertex3f(-0.49f, -0.055f, -0.12f);
+        gl.glVertex3f(-0.49f, -0.06f, -0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, -0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, -0.12f);
         
-        gl.glVertex3f(-0.51f, -0.08f, -0.15f);
-        gl.glVertex3f(-0.51f, -0.08f, -0.15f);
-        gl.glVertex3f(-0.5f, -0.07f, -0.13f);
-        gl.glVertex3f(-0.5f, -0.065f, -0.13f);
+        gl.glVertex3f(-0.51f, -0.07f, -0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, -0.12f);
+        gl.glVertex3f(-0.5f, -0.065f, -0.1f);
+        gl.glVertex3f(-0.5f, -0.06f, -0.1f);
         
-        gl.glVertex3f(-0.5f, -0.065f, -0.13f);
-        gl.glVertex3f(-0.5f, -0.07f, -0.13f);
-        gl.glVertex3f(-0.5f, -0.07f, -0.01f);
+        gl.glVertex3f(-0.5f, -0.06f, -0.1f);
+        gl.glVertex3f(-0.5f, -0.065f, -0.1f);
         gl.glVertex3f(-0.5f, -0.065f, -0.01f);
+        gl.glVertex3f(-0.5f, -0.06f, -0.01f);
         
+        gl.glVertex3f(-0.5f, -0.06f, -0.01f);
         gl.glVertex3f(-0.5f, -0.065f, -0.01f);
-        gl.glVertex3f(-0.5f, -0.07f, -0.01f);
-        gl.glVertex3f(-0.49f, -0.06f, 0.0f);
         gl.glVertex3f(-0.49f, -0.055f, 0.0f);
+        gl.glVertex3f(-0.49f, -0.05f, 0.0f);
         
+/*##############################################################################
+##############################################################################*/
         // Kerangka Buntut Kanan
         gl.glVertex3f(-0.4f, 0.0f, 0.0f);
         gl.glVertex3f(-0.4f, -0.02f, 0.0f);
-        gl.glVertex3f(-0.42f, -0.03f, 0.05f);
-        gl.glVertex3f(-0.42f, -0.01f, 0.05f);
+        gl.glVertex3f(-0.42f, -0.03f, 0.03f);
+        gl.glVertex3f(-0.42f, -0.01f, 0.03f);
         
-        gl.glVertex3f(-0.42f, -0.01f, 0.05f);
-        gl.glVertex3f(-0.42f, -0.03f, 0.05f);
-        gl.glVertex3f(-0.45f, -0.04f, 0.1f);
-        gl.glVertex3f(-0.45f, -0.025f, 0.1f);
+        gl.glVertex3f(-0.42f, -0.01f, 0.03f);
+        gl.glVertex3f(-0.42f, -0.03f, 0.03f);
+        gl.glVertex3f(-0.45f, -0.04f, 0.08f);
+        gl.glVertex3f(-0.45f, -0.025f, 0.08f);
         
-        gl.glVertex3f(-0.45f, -0.025f, 0.1f);
-        gl.glVertex3f(-0.45f, -0.04f, 0.1f);
-        gl.glVertex3f(-0.47f, -0.05f, 0.13f);
-        gl.glVertex3f(-0.47f, -0.04f, 0.13f);
+        gl.glVertex3f(-0.45f, -0.025f, 0.08f);
+        gl.glVertex3f(-0.45f, -0.04f, 0.08f);
+        gl.glVertex3f(-0.47f, -0.05f, 0.1f);
+        gl.glVertex3f(-0.47f, -0.04f, 0.1f);
         
-        gl.glVertex3f(-0.47f, -0.04f, 0.13f);
-        gl.glVertex3f(-0.47f, -0.05f, 0.13f);
-        gl.glVertex3f(-0.49f, -0.06f, 0.15f);
-        gl.glVertex3f(-0.49f, -0.055f, 0.15f);
+        gl.glVertex3f(-0.47f, -0.04f, 0.1f);
+        gl.glVertex3f(-0.47f, -0.05f, 0.1f);
+        gl.glVertex3f(-0.49f, -0.06f, 0.12f);
+        gl.glVertex3f(-0.49f, -0.055f, 0.12f);
         
-        gl.glVertex3f(-0.49f, -0.055f, 0.15f);
-        gl.glVertex3f(-0.49f, -0.06f, 0.15f);
-        gl.glVertex3f(-0.51f, -0.08f, 0.15f);
-        gl.glVertex3f(-0.51f, -0.08f, 0.15f);
+        gl.glVertex3f(-0.49f, -0.055f, 0.12f);
+        gl.glVertex3f(-0.49f, -0.06f, 0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, 0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, 0.12f);
         
-        gl.glVertex3f(-0.51f, -0.08f, 0.15f);
-        gl.glVertex3f(-0.51f, -0.08f, 0.15f);
-        gl.glVertex3f(-0.5f, -0.07f, 0.13f);
-        gl.glVertex3f(-0.5f, -0.065f, 0.13f);
+        gl.glVertex3f(-0.51f, -0.07f, 0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, 0.12f);
+        gl.glVertex3f(-0.5f, -0.065f, 0.1f);
+        gl.glVertex3f(-0.5f, -0.06f, 0.1f);
         
-        gl.glVertex3f(-0.5f, -0.065f, 0.13f);
-        gl.glVertex3f(-0.5f, -0.07f, 0.13f);
-        gl.glVertex3f(-0.5f, -0.07f, 0.01f);
+        gl.glVertex3f(-0.5f, -0.06f, 0.1f);
+        gl.glVertex3f(-0.5f, -0.065f, 0.1f);
         gl.glVertex3f(-0.5f, -0.065f, 0.01f);
+        gl.glVertex3f(-0.5f, -0.06f, 0.01f);
         
+        gl.glVertex3f(-0.5f, -0.06f, 0.01f);
         gl.glVertex3f(-0.5f, -0.065f, 0.01f);
-        gl.glVertex3f(-0.5f, -0.07f, 0.01f);
-        gl.glVertex3f(-0.49f, -0.06f, 0.0f);
         gl.glVertex3f(-0.49f, -0.055f, 0.0f);
+        gl.glVertex3f(-0.49f, -0.05f, 0.0f);
         
+/*##############################################################################
+##############################################################################*/        
         // Fill
         
         
