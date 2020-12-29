@@ -149,12 +149,18 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glRotatef(angleY, 0.0f, 1.0f, 0.0f); // rotate about the y-axis
         gl.glRotatef(angleZ, 0.0f, 0.0f, 1.0f); // rotate about the z-axis
         
+        if (isLightOn) {
+            gl.glEnable(GL.GL_LIGHTING);
+        } else {
+            gl.glDisable(GL.GL_LIGHTING);
+        }
+        
         gl.glBegin(GL.GL_QUADS);
-        gl.glColor3f(0.0f, 0.5f, 1.0f); // RGB
 
 /*##############################################################################
 ##############################################################################*/        
         // Kerangka Paus - Samping
+        gl.glColor3f(1.0f, 1.0f, 1.0f); // Warna Putih
         gl.glVertex3f(-0.49f, -0.05f, -0.0f);
         gl.glVertex3f(-0.49f, -0.05f, 0.0f);
         gl.glVertex3f(-0.44f, -0.04f, 0.005f);
@@ -220,6 +226,7 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(0.43f, 0.02f, 0.01f);
         gl.glVertex3f(0.43f, 0.02f, -0.01f);
         
+        gl.glColor3f(0.0f, 0.0f, 1.0f); // Warna Biru
         gl.glVertex3f(0.43f, 0.02f, -0.01f);
         gl.glVertex3f(0.43f, 0.02f, 0.01f);
         gl.glVertex3f(0.43f, 0.04f, 0.01f);
@@ -309,19 +316,21 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(-0.23f, 0.07f, -0.01f);
         
         // Fill Sirip Atas
-//        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
-//        gl.glVertex3f(-0.23f, 0.095f, 0.005f);
-//        gl.glVertex3f(-0.19f, 0.08f, 0.01f);
-//        gl.glVertex3f(-0.23f, 0.07f, 0.01f);
-//        
-//        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
-//        gl.glVertex3f(-0.23f, 0.095f, -0.005f);
-//        gl.glVertex3f(-0.19f, 0.08f, -0.01f);
-//        gl.glVertex3f(-0.23f, 0.07f, -0.01f);
+        gl.glColor3f(0.0f, 0.0f, 0.5f); // Biru Tua
+        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
+        gl.glVertex3f(-0.23f, 0.095f, 0.005f);
+        gl.glVertex3f(-0.19f, 0.08f, 0.01f);
+        gl.glVertex3f(-0.23f, 0.07f, 0.01f);
+        
+        gl.glVertex3f(-0.25f, 0.095f, 0.0f);
+        gl.glVertex3f(-0.23f, 0.095f, -0.005f);
+        gl.glVertex3f(-0.19f, 0.08f, -0.01f);
+        gl.glVertex3f(-0.23f, 0.07f, -0.01f);
 
 /*##############################################################################
 ##############################################################################*/        
         // Kerangka paus - atas kanan
+        gl.glColor3f(0.0f, 0.0f, 1.0f); // Biru
         gl.glVertex3f(-0.41f, -0.01f, 0.02f);
         gl.glVertex3f(-0.49f, -0.05f, 0.0f);
         gl.glVertex3f(-0.49f, -0.05f, 0.0f);
@@ -478,6 +487,7 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
 /*##############################################################################
 ##############################################################################*/        
         // Kerangka Sirip Kanan
+        gl.glColor3f(0.0f, 0.0f, 1.0f); // Biru
         gl.glVertex3f(0.2f, 0.0f, 0.06f);
         gl.glVertex3f(0.2f, 0.0f, 0.08f);
         gl.glVertex3f(0.16f, 0.0f, 0.08f);
@@ -527,10 +537,66 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(0.18f, -0.02f, 0.1f);
         gl.glVertex3f(0.2f, 0.0f, 0.08f);
         gl.glVertex3f(0.2f, 0.0f, 0.06f);
+        
+        // Fill Sirip Kanan
+        // Atas
+        gl.glColor3f(0.0f, 0.0f, 0.5f); // Biru
+        gl.glVertex3f(0.2f, 0.0f, 0.08f);
+        gl.glVertex3f(0.2f, 0.0f, 0.08f);
+        gl.glVertex3f(0.18f, -0.02f, 0.1f);
+        gl.glVertex3f(0.16f, 0.0f, 0.08f);
+        
+        gl.glVertex3f(0.18f, -0.02f, 0.1f);
+        gl.glVertex3f(0.16f, 0.0f, 0.08f);
+        gl.glVertex3f(0.13f, -0.01f, 0.09f);
+        gl.glVertex3f(0.15f, -0.05f, 0.13f);
+        
+        gl.glVertex3f(0.13f, -0.01f, 0.09f);
+        gl.glVertex3f(0.15f, -0.05f, 0.13f);
+        gl.glVertex3f(0.12f, -0.07f, 0.15f);
+        gl.glVertex3f(0.1f, -0.04f, 0.12f);
+        
+        gl.glVertex3f(0.12f, -0.07f, 0.15f);
+        gl.glVertex3f(0.1f, -0.04f, 0.12f);
+        gl.glVertex3f(0.08f, -0.06f, 0.14f);
+        gl.glVertex3f(0.09f, -0.08f, 0.16f);
+        
+        gl.glVertex3f(0.08f, -0.06f, 0.14f);
+        gl.glVertex3f(0.09f, -0.08f, 0.16f);
+        gl.glVertex3f(0.05f, -0.08f, 0.15f);
+        gl.glVertex3f(0.05f, -0.08f, 0.15f);
+        
+        // Bawah
+        gl.glColor3f(1.0f, 1.0f, 1.0f); // Putih
+        gl.glVertex3f(0.2f, 0.0f, 0.06f);
+        gl.glVertex3f(0.2f, 0.0f, 0.06f);
+        gl.glVertex3f(0.18f, -0.02f, 0.08f);
+        gl.glVertex3f(0.16f, 0.0f, 0.06f);
+        
+        gl.glVertex3f(0.18f, -0.02f, 0.08f);
+        gl.glVertex3f(0.16f, 0.0f, 0.06f);
+        gl.glVertex3f(0.13f, -0.01f, 0.07f);
+        gl.glVertex3f(0.15f, -0.05f, 0.11f);
+        
+        gl.glVertex3f(0.13f, -0.01f, 0.07f);
+        gl.glVertex3f(0.15f, -0.05f, 0.11f);
+        gl.glVertex3f(0.12f, -0.07f, 0.14f);
+        gl.glVertex3f(0.1f, -0.04f, 0.11f);
+        
+        gl.glVertex3f(0.12f, -0.07f, 0.14f);
+        gl.glVertex3f(0.1f, -0.04f, 0.11f);
+        gl.glVertex3f(0.08f, -0.06f, 0.13f);
+        gl.glVertex3f(0.09f, -0.08f, 0.15f);
+        
+        gl.glVertex3f(0.08f, -0.06f, 0.13f);
+        gl.glVertex3f(0.09f, -0.08f, 0.15f);
+        gl.glVertex3f(0.05f, -0.08f, 0.15f);
+        gl.glVertex3f(0.05f, -0.08f, 0.15f);
 
 /*##############################################################################
 ##############################################################################*/        
         // Kerangka Sirip Kiri
+        gl.glColor3f(0.0f, 0.0f, 1.0f); // Biru
         gl.glVertex3f(0.2f, 0.0f, -0.06f);
         gl.glVertex3f(0.2f, 0.0f, -0.08f);
         gl.glVertex3f(0.16f, 0.0f, -0.08f);
@@ -580,22 +646,68 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(0.18f, -0.02f, -0.1f);
         gl.glVertex3f(0.2f, 0.0f, -0.08f);
         gl.glVertex3f(0.2f, 0.0f, -0.06f);
+        
+        // Fill Sirip Kiri
+        // Atas
+        gl.glColor3f(0.0f, 0.0f, 0.5f); // Biru Tua
+        gl.glVertex3f(0.2f, 0.0f, -0.08f);
+        gl.glVertex3f(0.2f, 0.0f, -0.08f);
+        gl.glVertex3f(0.18f, -0.02f, -0.1f);
+        gl.glVertex3f(0.16f, 0.0f, -0.08f);
+        
+        gl.glVertex3f(0.18f, -0.02f, -0.1f);
+        gl.glVertex3f(0.16f, 0.0f, -0.08f);
+        gl.glVertex3f(0.13f, -0.01f, -0.09f);
+        gl.glVertex3f(0.15f, -0.05f, -0.13f);
+        
+        gl.glVertex3f(0.13f, -0.01f, -0.09f);
+        gl.glVertex3f(0.15f, -0.05f, -0.13f);
+        gl.glVertex3f(0.12f, -0.07f, -0.15f);
+        gl.glVertex3f(0.1f, -0.04f, -0.12f);
+        
+        gl.glVertex3f(0.12f, -0.07f, -0.15f);
+        gl.glVertex3f(0.1f, -0.04f, -0.12f);
+        gl.glVertex3f(0.08f, -0.06f, -0.14f);
+        gl.glVertex3f(0.09f, -0.08f, -0.16f);
+        
+        gl.glVertex3f(0.08f, -0.06f, -0.14f);
+        gl.glVertex3f(0.09f, -0.08f, -0.16f);
+        gl.glVertex3f(0.05f, -0.08f, -0.15f);
+        gl.glVertex3f(0.05f, -0.08f, -0.15f);
+        
+        // Bawah
+        gl.glColor3f(1.0f, 1.0f, 1.0f); // Putih
+        gl.glVertex3f(0.2f, 0.0f, -0.06f);
+        gl.glVertex3f(0.2f, 0.0f, -0.06f);
+        gl.glVertex3f(0.18f, -0.02f, -0.08f);
+        gl.glVertex3f(0.16f, 0.0f, -0.06f);
+        
+        gl.glVertex3f(0.18f, -0.02f, -0.08f);
+        gl.glVertex3f(0.16f, 0.0f, -0.06f);
+        gl.glVertex3f(0.13f, -0.01f, -0.07f);
+        gl.glVertex3f(0.15f, -0.05f, -0.11f);
+        
+        gl.glVertex3f(0.13f, -0.01f, -0.07f);
+        gl.glVertex3f(0.15f, -0.05f, -0.11f);
+        gl.glVertex3f(0.12f, -0.07f, -0.14f);
+        gl.glVertex3f(0.1f, -0.04f, -0.11f);
+        
+        gl.glVertex3f(0.12f, -0.07f, -0.14f);
+        gl.glVertex3f(0.1f, -0.04f, -0.11f);
+        gl.glVertex3f(0.08f, -0.06f, -0.13f);
+        gl.glVertex3f(0.09f, -0.08f, -0.15f);
+        
+        gl.glVertex3f(0.08f, -0.06f, -0.13f);
+        gl.glVertex3f(0.09f, -0.08f, -0.15f);
+        gl.glVertex3f(0.05f, -0.08f, -0.15f);
+        gl.glVertex3f(0.05f, -0.08f, -0.15f);
         
 /*##############################################################################
 ##############################################################################*/        
         // Kerangka Buntut Kiri
-        gl.glVertex3f(-0.4f, 0.0f, 0.0f);
-        gl.glVertex3f(-0.4f, -0.02f, 0.0f);
-        gl.glVertex3f(-0.42f, -0.03f, -0.03f);
-        gl.glVertex3f(-0.42f, -0.01f, -0.03f);
-        
-        gl.glVertex3f(-0.42f, -0.01f, -0.03f);
-        gl.glVertex3f(-0.42f, -0.03f, -0.03f);
-        gl.glVertex3f(-0.45f, -0.04f, -0.08f);
-        gl.glVertex3f(-0.45f, -0.025f, -0.08f);
-        
-        gl.glVertex3f(-0.45f, -0.025f, -0.08f);
-        gl.glVertex3f(-0.45f, -0.04f, -0.08f);
+        gl.glColor3f(0.0f, 0.0f, 1.0f); // Warna Biru
+        gl.glVertex3f(-0.44f, -0.02f, 0.0f);
+        gl.glVertex3f(-0.44f, -0.04f, 0.0f);
         gl.glVertex3f(-0.47f, -0.05f, -0.1f);
         gl.glVertex3f(-0.47f, -0.04f, -0.1f);
         
@@ -623,22 +735,48 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(-0.5f, -0.065f, -0.01f);
         gl.glVertex3f(-0.49f, -0.055f, 0.0f);
         gl.glVertex3f(-0.49f, -0.05f, 0.0f);
+        
+        // Fill Buntut Kiri
+        // Atas
+        gl.glColor3f(0.0f, 0.0f, 0.5f); // Warna Biru Tua
+        gl.glVertex3f(-0.44f, -0.02f, 0.0f);
+        gl.glVertex3f(-0.47f, -0.04f, -0.1f);
+        gl.glVertex3f(-0.5f, -0.06f, -0.01f);
+        gl.glVertex3f(-0.49f, -0.05f, 0.0f);
+        
+        gl.glVertex3f(-0.47f, -0.04f, -0.1f);
+        gl.glVertex3f(-0.5f, -0.06f, -0.01f);
+        gl.glVertex3f(-0.5f, -0.06f, -0.1f);
+        gl.glVertex3f(-0.49f, -0.055f, -0.12f);
+        
+        gl.glVertex3f(-0.49f, -0.055f, -0.12f);
+        gl.glVertex3f(-0.5f, -0.06f, -0.1f);
+        gl.glVertex3f(-0.51f, -0.07f, -0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, -0.12f);
+        
+        // Bawah
+        gl.glColor3f(1.0f, 1.0f, 1.0f); // Warna Putih
+        gl.glVertex3f(-0.44f, -0.04f, 0.0f);
+        gl.glVertex3f(-0.47f, -0.05f, -0.1f);
+        gl.glVertex3f(-0.5f, -0.065f, -0.01f);
+        gl.glVertex3f(-0.49f, -0.055f, 0.0f);
+        
+        gl.glVertex3f(-0.47f, -0.05f, -0.1f);
+        gl.glVertex3f(-0.5f, -0.065f, -0.01f);
+        gl.glVertex3f(-0.5f, -0.065f, -0.1f);
+        gl.glVertex3f(-0.49f, -0.06f, -0.12f);
+        
+        gl.glVertex3f(-0.49f, -0.06f, -0.12f);
+        gl.glVertex3f(-0.5f, -0.065f, -0.1f);
+        gl.glVertex3f(-0.51f, -0.07f, -0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, -0.12f);
         
 /*##############################################################################
 ##############################################################################*/
         // Kerangka Buntut Kanan
-        gl.glVertex3f(-0.4f, 0.0f, 0.0f);
-        gl.glVertex3f(-0.4f, -0.02f, 0.0f);
-        gl.glVertex3f(-0.42f, -0.03f, 0.03f);
-        gl.glVertex3f(-0.42f, -0.01f, 0.03f);
-        
-        gl.glVertex3f(-0.42f, -0.01f, 0.03f);
-        gl.glVertex3f(-0.42f, -0.03f, 0.03f);
-        gl.glVertex3f(-0.45f, -0.04f, 0.08f);
-        gl.glVertex3f(-0.45f, -0.025f, 0.08f);
-        
-        gl.glVertex3f(-0.45f, -0.025f, 0.08f);
-        gl.glVertex3f(-0.45f, -0.04f, 0.08f);
+        gl.glColor3f(0.0f, 0.0f, 1.0f); // Warna Biru
+        gl.glVertex3f(-0.44f, -0.02f, 0.0f);
+        gl.glVertex3f(-0.44f, -0.04f, 0.0f);
         gl.glVertex3f(-0.47f, -0.05f, 0.1f);
         gl.glVertex3f(-0.47f, -0.04f, 0.1f);
         
@@ -667,10 +805,43 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glVertex3f(-0.49f, -0.055f, 0.0f);
         gl.glVertex3f(-0.49f, -0.05f, 0.0f);
         
-/*##############################################################################
-##############################################################################*/        
-        // Fill
+        // Fill Buntut Kanan
+        // Atas
+        gl.glColor3f(0.0f, 0.0f, 0.5f); // Warna Biru Tua
+        gl.glVertex3f(-0.44f, -0.02f, 0.0f);
+        gl.glVertex3f(-0.47f, -0.04f, 0.1f);
+        gl.glVertex3f(-0.5f, -0.06f, 0.01f);
+        gl.glVertex3f(-0.49f, -0.05f, 0.0f);
         
+        gl.glVertex3f(-0.47f, -0.04f, 0.1f);
+        gl.glVertex3f(-0.5f, -0.06f, 0.01f);
+        gl.glVertex3f(-0.5f, -0.06f, 0.1f);
+        gl.glVertex3f(-0.49f, -0.055f, 0.12f);
+        
+        gl.glVertex3f(-0.49f, -0.055f, 0.12f);
+        gl.glVertex3f(-0.5f, -0.06f, 0.1f);
+        gl.glVertex3f(-0.51f, -0.07f, 0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, 0.12f);
+        
+        // Bawah
+        gl.glColor3f(1.0f, 1.0f, 1.0f); // Warna Putih
+        gl.glVertex3f(-0.44f, -0.04f, 0.0f);
+        gl.glVertex3f(-0.47f, -0.05f, 0.1f);
+        gl.glVertex3f(-0.5f, -0.065f, 0.01f);
+        gl.glVertex3f(-0.49f, -0.055f, 0.0f);
+        
+        gl.glVertex3f(-0.47f, -0.05f, 0.1f);
+        gl.glVertex3f(-0.5f, -0.065f, 0.01f);
+        gl.glVertex3f(-0.5f, -0.065f, 0.1f);
+        gl.glVertex3f(-0.49f, -0.06f, 0.12f);
+        
+        gl.glVertex3f(-0.49f, -0.06f, 0.12f);
+        gl.glVertex3f(-0.5f, -0.065f, 0.1f);
+        gl.glVertex3f(-0.51f, -0.07f, 0.12f);
+        gl.glVertex3f(-0.51f, -0.07f, 0.12f);
+        
+/*##############################################################################
+##############################################################################*/
         
         gl.glEnd();
 
