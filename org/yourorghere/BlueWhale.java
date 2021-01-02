@@ -23,12 +23,17 @@ public class BlueWhale {
      * Method to call part object
      */
     public void drawBlueWhale() {
+        GL gl = drawable.getGL();
+        
         Body body = new Body(drawable);
-        Fin fin = new Fin(drawable);
+        RightFin finR = new RightFin(drawable);
+        LeftFin finL = new LeftFin(drawable);
         Tail tail = new Tail(drawable);
         
         body.drawBody();
-        fin.drawFin();
+        gl.glTranslatef(0.15f, 0.0f, 0.0f);
+        finR.drawFin();
+        finL.drawFin();
         tail.drawTail();
     }
 }
