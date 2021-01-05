@@ -9,10 +9,14 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_DOWN;
+import static java.awt.event.KeyEvent.VK_F;
 import static java.awt.event.KeyEvent.VK_L;
 import static java.awt.event.KeyEvent.VK_LEFT;
+import static java.awt.event.KeyEvent.VK_PAGE_DOWN;
+import static java.awt.event.KeyEvent.VK_PAGE_UP;
 import static java.awt.event.KeyEvent.VK_RIGHT;
 import static java.awt.event.KeyEvent.VK_SHIFT;
+import static java.awt.event.KeyEvent.VK_SPACE;
 import static java.awt.event.KeyEvent.VK_UP;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -53,18 +57,12 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
     private static float rotateSpeedZ = 0.0f; // rotational speed for z-axis
     private static float rotateSpeedXIncrement = 1f; // adjusting x rotational speed
     private static float rotateSpeedYIncrement = 1f; // adjusting y rotational speed
+    private static float zoomZ = -1.0f; // translation for z-axis
+    private static float transSpeedZ = 0.0f; // translation speed for z-axis
+    private static float transSpeedZIncrement = 0.01f;
     
-    // texture with three different filters - nearest, linear & MIPMAP
-    private Texture texture;
-    private String textureFileName = "";
-    private String textureFileType = "";
-    
-    // Texture image flips vertically. Shall use TextureCoords class to retrieve the
-    // top, bottom, left and right coordinates.
-    private float textureTop, textureBottom, textureLeft, textureRight;
-    
-    // Lighting
-    private static boolean isLightOn;
+    // set variable for visible object
+    private static boolean isVisible;
     
     public static void main(String[] args) {
         // Run the GUI codes in the event-dispatching thread for thread safety
@@ -125,54 +123,14 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();      // get the OpenGL graphics context
         glu = new GLU();                         // get GL Utilities
-        gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // set background (clear) color
+        gl.glClearColor(0.0f, 0.9f, 0.9f, 0.0f); // set background (clear) color
         gl.glClearDepth(1.0f);      // set clear depth value to farthest
         gl.glEnable(GL.GL_DEPTH_TEST); // enables depth testing
         gl.glDepthFunc(GL.GL_LEQUAL);  // the type of depth test to do
         gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST); // best perspective correction
         gl.glShadeModel(GL.GL_SMOOTH); // blends colors nicely, and smoothes out lighting
 
-        // Load textures from image
-        try {
-            // Create a OpenGL Texture object from (URL, mipmap, file suffix)
-            // Use URL so that can read from JAR and disk file.
-            texture = TextureIO.newTexture(
-                    getClass().getClassLoader().getResource(textureFileName), // relative to project root
-                    false, textureFileType);
-
-            // Use linear filter for texture if image is larger than the original texture
-            gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);
-            // Use linear filter for texture if image is smaller than the original texture
-            gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_LINEAR);
-
-            // Texture image flips vertically. Shall use TextureCoords class to retrieve
-            // the top, bottom, left and right coordinates, instead of using 0.0f and 1.0f.
-            TextureCoords textureCoords = texture.getImageTexCoords();
-            textureTop = textureCoords.top();
-            textureBottom = textureCoords.bottom();
-            textureLeft = textureCoords.left();
-            textureRight = textureCoords.right();
-        } catch (GLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Set up the lighting for Light-1
-        // Ambient light does not come from a particular direction. Need some ambient
-        // light to light up the scene. Ambient's value in RGBA
-        float[] lightAmbientValue = {0.5f, 0.5f, 0.5f, 1.0f};
-        // Diffuse light comes from a particular location. Diffuse's value in RGBA
-        float[] lightDiffuseValue = {1.0f, 1.0f, 1.0f, 1.0f};
-        // Diffuse light location xyz (in front of the screen).
-        float lightDiffusePosition[] = {0.0f, 0.0f, 2.0f, 1.0f};
-
-        gl.glLightfv(GL.GL_LIGHT1, GL.GL_AMBIENT, lightAmbientValue, 0);
-        gl.glLightfv(GL.GL_LIGHT1, GL.GL_DIFFUSE, lightDiffuseValue, 0);
-        gl.glLightfv(GL.GL_LIGHT1, GL.GL_POSITION, lightDiffusePosition, 0);
-        gl.glEnable(GL.GL_LIGHT1);    // Enable Light-1
-        gl.glDisable(GL.GL_LIGHTING); // But disable lighting
-        isLightOn = false;
+        isVisible = false;
     }
 
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
@@ -201,25 +159,23 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT); // clear color and depth buffers
 
         gl.glLoadIdentity(); // reset the model-view matrix
-        gl.glTranslatef(0.0f, 0.0f, -1.0f); // translate into the screen
+        gl.glTranslatef(0.0f, 0.0f, zoomZ); // translate into the screen
         gl.glRotatef(angleX, 1.0f, 0.0f, 0.0f); // rotate about the x-axis
         gl.glRotatef(angleY, 0.0f, 1.0f, 0.0f); // rotate about the y-axis
         gl.glRotatef(angleZ, 0.0f, 0.0f, 1.0f); // rotate about the z-axis
         
-        if (isLightOn) {
-            gl.glEnable(GL.GL_LIGHTING);
-        } else {
-            gl.glDisable(GL.GL_LIGHTING);
-        }
-        
         BlueWhale blueWhale = new BlueWhale(drawable);
         blueWhale.drawBlueWhale();
-
-        // Disables this texture's target (e.g., GL_TEXTURE_2D) in the current GL
-        // context's state.
-        //texture.disable(gl);  // same as gl.glDisable(texture.getTarget());
-
+        Fountain fountain = new Fountain(drawable);
+        
+        if (isVisible) {
+            fountain.drawFountain();
+        }
+        
         // Update the rotational angel after each refresh by the corresponding
+        // translation speed
+        zoomZ += transSpeedZ;
+        
         // rotational speed
         angleX += rotateSpeedX;
         angleY += rotateSpeedY;
@@ -231,22 +187,28 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
-            case VK_L: // toggle light on/off
-                isLightOn = !isLightOn;
+            case VK_SPACE: // toggle fountain
+                isVisible = !isVisible;
                 break;
-            case VK_UP:   // decrease rotational speed in x
+            case VK_UP:   // rotate to up
                 rotateSpeedX = -rotateSpeedXIncrement;
                 break;
-            case VK_DOWN: // increase rotational speed in x
+            case VK_DOWN: // rotate to down
                 rotateSpeedX = +rotateSpeedXIncrement;
                 break;
-            case VK_LEFT:  // decrease rotational speed in y
+            case VK_LEFT:  // rotate to left
                 rotateSpeedY = -rotateSpeedYIncrement;
                 break;
-            case VK_RIGHT: // increase rotational speed in y
+            case VK_RIGHT: // rotate to right
                 rotateSpeedY = +rotateSpeedYIncrement;
                 break;
-            case VK_SHIFT : // increase rotational speed in y
+            case VK_PAGE_UP: // zoom out
+                transSpeedZ = -transSpeedZIncrement;
+                break;
+            case VK_PAGE_DOWN: // zoom in
+                transSpeedZ = +transSpeedZIncrement;
+                break;
+            case VK_SHIFT :
                 rotateSpeedY = 0;
                 rotateSpeedX = 0;
                 break;
@@ -273,17 +235,19 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
                 rotateSpeedY = 0;
                 rotateSpeedX = 0;
                 break;
+            case VK_PAGE_UP:
+                transSpeedZ = 0;
+                break;
+            case VK_PAGE_DOWN:
+                transSpeedZ = 0;
+                break;
         }
     }
     
     @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
-    public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void displayChanged(GLAutoDrawable drawable, boolean modeChanged, boolean deviceChanged) {}
 }
 

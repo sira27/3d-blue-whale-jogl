@@ -21,13 +21,14 @@ public class Tail {
     
     public void drawTail() {
         GL gl = drawable.getGL();
-        gl.glTranslatef(-0.59f, -0.015f, 0.0f);
+        gl.glTranslatef(-0.44f, -0.015f, 0.0f);
         gl.glRotatef(2.5f, 0.0f, 0.0f, 1.0f);
         patternTail();
         refillTail();
+        gl.glTranslatef(0.44f, 0.015f, 0.0f); // Reset Translate
     }
     
-    public void patternTail() {
+    private void patternTail() {
         GL gl = drawable.getGL();
         gl.glBegin(GL.GL_QUADS);
         
@@ -103,7 +104,7 @@ public class Tail {
         gl.glEnd();
     }
     
-    public void refillTail() {
+    private void refillTail() {
         GL gl = drawable.getGL();
         gl.glBegin(GL.GL_QUADS);
         

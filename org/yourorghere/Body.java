@@ -20,11 +20,57 @@ public class Body {
     }
     
     public void drawBody() {
+        eye();
         patternBody();
         refillBody();
     }
     
-    public void patternBody() {
+    private void eye() {
+        GL gl = drawable.getGL();
+        gl.glBegin(GL.GL_QUADS);
+        
+        /**
+         * Mata Kanan
+         */
+        gl.glColor3f(0.0f, 0.0f, 0.0f); // Warna Hitam
+        gl.glVertex3f(0.23f, 0.02f, 0.065f);
+        gl.glVertex3f(0.245f, 0.025f, 0.065f);
+        gl.glVertex3f(0.25f, 0.04f, 0.065f);
+        gl.glVertex3f(0.235f, 0.035f, 0.065f);
+        
+        gl.glVertex3f(0.25f, 0.04f, 0.065f);
+        gl.glVertex3f(0.245f, 0.025f, 0.065f);
+        gl.glVertex3f(0.255f, 0.025f, 0.065f);
+        gl.glVertex3f(0.25f, 0.04f, 0.065f);
+        
+        gl.glVertex3f(0.25f, 0.04f, 0.065f);
+        gl.glVertex3f(0.255f, 0.025f, 0.065f);
+        gl.glVertex3f(0.27f, 0.02f ,0.065f);
+        gl.glVertex3f(0.265f, 0.035f, 0.065f);
+        
+        /**
+         * Mata Kiri
+         */
+        gl.glColor3f(0.0f, 0.0f, 0.0f); // Hitam
+        gl.glVertex3f(0.23f, 0.02f, -0.065f);
+        gl.glVertex3f(0.245f, 0.025f, -0.065f);
+        gl.glVertex3f(0.25f, 0.04f, -0.065f);
+        gl.glVertex3f(0.235f, 0.035f, -0.065f);
+        
+        gl.glVertex3f(0.25f, 0.04f, -0.065f);
+        gl.glVertex3f(0.245f, 0.025f, -0.065f);
+        gl.glVertex3f(0.255f, 0.025f, -0.065f);
+        gl.glVertex3f(0.25f, 0.04f, -0.065f);
+        
+        gl.glVertex3f(0.25f, 0.04f, -0.065f);
+        gl.glVertex3f(0.255f, 0.025f, -0.065f);
+        gl.glVertex3f(0.27f, 0.02f, -0.065f);
+        gl.glVertex3f(0.265f, 0.035f, -0.065f);
+        
+        gl.glEnd();
+    }
+    
+    private void patternBody() {
         GL gl = drawable.getGL();
         gl.glBegin(GL.GL_QUADS);
         
@@ -340,7 +386,7 @@ public class Body {
         gl.glEnd();
     }
     
-    public void refillBody() {
+    private void refillBody() {
         GL gl = drawable.getGL();
         gl.glBegin(GL.GL_QUADS);
         

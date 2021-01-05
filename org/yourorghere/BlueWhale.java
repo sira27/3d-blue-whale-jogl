@@ -31,7 +31,6 @@ public class BlueWhale {
         Tail tail = new Tail(drawable);
         
         body.drawBody();
-        gl.glTranslatef(0.15f, 0.0f, 0.0f);
         finR.drawFin();
         finL.drawFin();
         tail.drawTail();

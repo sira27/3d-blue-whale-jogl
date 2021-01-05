@@ -21,11 +21,13 @@ public class RightFin {
     
     public void drawFin() {
         GL gl = drawable.getGL();
+        gl.glTranslatef(0.15f, 0.0f, 0.0f);
         patternFin();
         refillFin();
+        gl.glTranslatef(-0.15f, 0.0f, 0.0f); // Reset Translate
     }
     
-    public void patternFin() {
+    private void patternFin() {
         GL gl = drawable.getGL();
         gl.glBegin(GL.GL_QUADS);
         
@@ -86,7 +88,7 @@ public class RightFin {
         gl.glEnd();
     }
     
-    public void refillFin() {
+    private void refillFin() {
         GL gl = drawable.getGL();
         gl.glBegin(GL.GL_QUADS);
         
