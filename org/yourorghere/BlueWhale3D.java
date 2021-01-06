@@ -166,8 +166,8 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         
         BlueWhale blueWhale = new BlueWhale(drawable);
         blueWhale.drawBlueWhale();
-        Fountain fountain = new Fountain(drawable);
         
+        Fountain fountain = new Fountain(drawable);
         if (isVisible) {
             fountain.drawFountain();
         }

@@ -33,39 +33,39 @@ public class Body {
          * Mata Kanan
          */
         gl.glColor3f(0.0f, 0.0f, 0.0f); // Warna Hitam
-        gl.glVertex3f(0.23f, 0.02f, 0.065f);
-        gl.glVertex3f(0.245f, 0.025f, 0.065f);
-        gl.glVertex3f(0.25f, 0.04f, 0.065f);
-        gl.glVertex3f(0.235f, 0.035f, 0.065f);
+        gl.glVertex3f(0.23f, 0.02f, 0.0625f);
+        gl.glVertex3f(0.245f, 0.025f, 0.0625f);
+        gl.glVertex3f(0.25f, 0.04f, 0.0625f);
+        gl.glVertex3f(0.235f, 0.035f, 0.0625f);
         
-        gl.glVertex3f(0.25f, 0.04f, 0.065f);
-        gl.glVertex3f(0.245f, 0.025f, 0.065f);
-        gl.glVertex3f(0.255f, 0.025f, 0.065f);
-        gl.glVertex3f(0.25f, 0.04f, 0.065f);
+        gl.glVertex3f(0.25f, 0.04f, 0.06f);
+        gl.glVertex3f(0.245f, 0.025f, 0.0625f);
+        gl.glVertex3f(0.255f, 0.025f, 0.0625f);
+        gl.glVertex3f(0.25f, 0.04f, 0.0625f);
         
-        gl.glVertex3f(0.25f, 0.04f, 0.065f);
-        gl.glVertex3f(0.255f, 0.025f, 0.065f);
-        gl.glVertex3f(0.27f, 0.02f ,0.065f);
-        gl.glVertex3f(0.265f, 0.035f, 0.065f);
+        gl.glVertex3f(0.25f, 0.04f, 0.0625f);
+        gl.glVertex3f(0.255f, 0.025f, 0.0625f);
+        gl.glVertex3f(0.27f, 0.02f ,0.0625f);
+        gl.glVertex3f(0.265f, 0.035f, 0.0625f);
         
         /**
          * Mata Kiri
          */
         gl.glColor3f(0.0f, 0.0f, 0.0f); // Hitam
-        gl.glVertex3f(0.23f, 0.02f, -0.065f);
-        gl.glVertex3f(0.245f, 0.025f, -0.065f);
-        gl.glVertex3f(0.25f, 0.04f, -0.065f);
-        gl.glVertex3f(0.235f, 0.035f, -0.065f);
+        gl.glVertex3f(0.23f, 0.02f, -0.0625f);
+        gl.glVertex3f(0.245f, 0.025f, -0.0625f);
+        gl.glVertex3f(0.25f, 0.04f, -0.0625f);
+        gl.glVertex3f(0.235f, 0.035f, -0.0625f);
         
-        gl.glVertex3f(0.25f, 0.04f, -0.065f);
-        gl.glVertex3f(0.245f, 0.025f, -0.065f);
-        gl.glVertex3f(0.255f, 0.025f, -0.065f);
-        gl.glVertex3f(0.25f, 0.04f, -0.065f);
+        gl.glVertex3f(0.25f, 0.04f, -0.0625f);
+        gl.glVertex3f(0.245f, 0.025f, -0.0625f);
+        gl.glVertex3f(0.255f, 0.025f, -0.0625f);
+        gl.glVertex3f(0.25f, 0.04f, -0.0625f);
         
-        gl.glVertex3f(0.25f, 0.04f, -0.065f);
-        gl.glVertex3f(0.255f, 0.025f, -0.065f);
-        gl.glVertex3f(0.27f, 0.02f, -0.065f);
-        gl.glVertex3f(0.265f, 0.035f, -0.065f);
+        gl.glVertex3f(0.25f, 0.04f, -0.0625f);
+        gl.glVertex3f(0.255f, 0.025f, -0.0625f);
+        gl.glVertex3f(0.27f, 0.02f, -0.0625f);
+        gl.glVertex3f(0.265f, 0.035f, -0.0625f);
         
         gl.glEnd();
     }
