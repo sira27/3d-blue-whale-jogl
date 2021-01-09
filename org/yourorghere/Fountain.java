@@ -21,9 +21,9 @@ public class Fountain {
     
     public void drawFountain() {
         GL gl = drawable.getGL();
-        gl.glTranslatef(0.26f, 0.045f, 0.0f);
+        gl.glTranslatef(0.26f, 0.03f, 0.0f);
         fountain();
-        gl.glTranslatef(-0.26f, -0.045f, 0.0f); // Reset Translate
+        gl.glTranslatef(-0.26f, -0.03f, 0.0f); // Reset Translate
     }
     
     private void fountain() {

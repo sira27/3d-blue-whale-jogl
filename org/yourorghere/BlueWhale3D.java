@@ -21,6 +21,7 @@ import static java.awt.event.KeyEvent.VK_UP;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -63,6 +64,8 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
     
     // set variable for visible object
     private static boolean isVisible;
+    
+    private int textureId;
     
     public static void main(String[] args) {
         // Run the GUI codes in the event-dispatching thread for thread safety
@@ -123,7 +126,7 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
     public void init(GLAutoDrawable drawable) {
         GL gl = drawable.getGL();      // get the OpenGL graphics context
         glu = new GLU();                         // get GL Utilities
-        gl.glClearColor(0.0f, 0.9f, 0.9f, 0.0f); // set background (clear) color
+        gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // set background (clear) color
         gl.glClearDepth(1.0f);      // set clear depth value to farthest
         gl.glEnable(GL.GL_DEPTH_TEST); // enables depth testing
         gl.glDepthFunc(GL.GL_LEQUAL);  // the type of depth test to do
@@ -164,6 +167,8 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         gl.glRotatef(angleY, 0.0f, 1.0f, 0.0f); // rotate about the y-axis
         gl.glRotatef(angleZ, 0.0f, 0.0f, 1.0f); // rotate about the z-axis
         
+        drawBackGround(gl);
+        
         BlueWhale blueWhale = new BlueWhale(drawable);
         blueWhale.drawBlueWhale();
         
@@ -180,6 +185,46 @@ public class BlueWhale3D extends GLCanvas implements GLEventListener, KeyListene
         angleX += rotateSpeedX;
         angleY += rotateSpeedY;
         angleZ += rotateSpeedZ;
+    }
+    
+    public void drawBackGround(GL gl) {
+        gl.glDisable(GL.GL_DEPTH_TEST);
+        gl.glDisable(GL.GL_CULL_FACE);
+        gl.glEnable(GL.GL_TEXTURE_2D);
+        gl.glEnable(GL.GL_DEPTH_TEST);
+        gl.glMatrixMode(GL.GL_PROJECTION);
+        gl.glPushMatrix();
+        gl.glLoadIdentity();
+        gl.glOrtho(0, 1, 0, 1, 0, 1);
+        gl.glMatrixMode(GL.GL_MODELVIEW);
+        gl.glPushMatrix();
+        gl.glLoadIdentity();
+        gl.glDepthMask(false);
+        gl.glEnable(GL.GL_TEXTURE_2D);
+        gl.glEnable(GL.GL_BLEND);
+        gl.glTexEnvf(GL.GL_TEXTURE_ENV, GL.GL_TEXTURE_ENV_MODE, GL.GL_REPLACE);
+        gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
+        gl.glBindTexture(GL.GL_TEXTURE_2D, textureId);
+        try {
+            File in2 = new File("src/deep_sea.jpg");
+            Texture t2 = TextureIO.newTexture(in2, true);
+            textureId = t2.getTextureObject();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        gl.glBegin(GL.GL_QUADS);
+            gl.glTexCoord2f(1f, 1f); gl.glVertex2f(0, 0);
+            gl.glTexCoord2f(0f, 1f); gl.glVertex2f(1, 0f);
+            gl.glTexCoord2f(0f, 0f); gl.glVertex2f(1f, 1f);
+            gl.glTexCoord2f(1f, 0f); gl.glVertex2f(0f, 1f);
+        gl.glEnd();
+        
+        gl.glDepthMask(true);
+        gl.glPopMatrix();
+        gl.glMatrixMode(GL.GL_PROJECTION);
+        gl.glPopMatrix();
+        gl.glMatrixMode(GL.GL_MODELVIEW);
+        gl.glDisable(GL.GL_TEXTURE_2D);
     }
     
     // ------ Implement methods declared in GLEventListener ------
